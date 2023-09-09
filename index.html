@@ -19,24 +19,6 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
   const auth = getAuth();
   console.log(app);
 
-  document.getElementById("register").addEventListener("click", function() {
-    var email =  document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-      alert("Registration successfully!!");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      alert(error);
-    });
-  });
-
   document.getElementById("login").addEventListener("click", function() {
     var email =  document.getElementById("login_email").value;
     var password = document.getElementById("login_password").value;
@@ -45,8 +27,10 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(user);
-      alert(user.email+" Login successfully!!!");
-      document.getElementById('logout').style.display = 'block';
+      alert(user.email + " Login successfully!!!");
+
+      // Redirect to Auth.html after successful login
+      window.location.href = "Auth.html";
     })
     .catch((error) => {
       const errorCode = error.code;
